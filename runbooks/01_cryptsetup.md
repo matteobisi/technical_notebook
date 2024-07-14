@@ -56,7 +56,7 @@ eg. to create a btrfs filesystem from the terminal
 ```
 mkfs.btrfs /dev/mapper/<string>
 ```
-**Note:**The fs needs to be created with /dev/mapper/ path and not /dev/sdx1 to not override the encryption 
+**Note**: the fs needs to be created with /dev/mapper/ path and not /dev/sdx1 to not override the encryption 
 
 
 ### Close the encrypted drive
