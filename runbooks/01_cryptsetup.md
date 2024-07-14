@@ -1,18 +1,20 @@
 # cryptsetup
 
 ## Description
-**cryptsetup** is an utility included in almost the majority of the linux distributions, and could be used
-to encrypt and manage filesystems.
-To install it on you distro just use the package manager and install it like the following examples:
+**cryptsetup** is an utility included in almost all the majority of the linux distributions.
+It could be used to encrypt and manage filesystems.
+In case isn't already present on your OS it could be installed easily with the  
+default package manager like the following examples:
+
 - sudo apt install cryptsetup
 - sudo pacman -S cryptsetup
 
 The purpose of this runbook is to use it to encrypt USB drives.
 
 ## The beginning
-**lsblk** could be used to identify the devices without any doubt
-**fdisk** could be used to create/remove partitions 
-**cryptsetup** is the utility to create and manage the encrypted partitions ( open | close | luksFormat )
+**lsblk** could be used to identify the devices without any doubt 
+**fdisk** could be used to create/remove partitions  
+**cryptsetup** is the utility to create and manage the encrypted partitions ( open | close | luksFormat )  
 
 
 
