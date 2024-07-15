@@ -9,3 +9,6 @@ The intention is to collect technical information in a public place that I might
 [00_markdown](runbooks/00_markdown.md): A short list of syntax needed to write file like this  
 [01_cryptsetup](runbooks/01_cryptsetup.md): How handle USB drive safetely with encryption
 
+# Links  
+## Mailing List
+- [Cloudseclist](https://cloudseclist.com/): security newsletter curated by [Marco Lancini](https://www.marcolancini.it/). 
