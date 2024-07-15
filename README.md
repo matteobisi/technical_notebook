@@ -11,4 +11,6 @@ The intention is to collect technical information in a public place that I might
 
 # Links  
 ## Mailing List
-- [Cloudseclist](https://cloudseclist.com/): security newsletter curated by [Marco Lancini](https://www.marcolancini.it/). 
+- [Cloudseclist](https://cloudseclist.com/): security newsletter curated by [Marco Lancini](https://www.marcolancini.it/)  
+- [observability news](https://buttondown.email/o11y.news#subscribe-form): updates around observability (o11y) with a special focus on open source
+- [kubeweekly](https://www.cncf.io/kubeweekly/):CNCF Newsletter, The weekly newsletter for all things Kubernetes and beyond
