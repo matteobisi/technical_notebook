@@ -12,5 +12,10 @@ The intention is to collect technical information in a public place that I might
 # Links  
 ## Mailing List
 - [Cloudseclist](https://cloudseclist.com/): security newsletter curated by [Marco Lancini](https://www.marcolancini.it/)  
-- [observability news](https://buttondown.email/o11y.news#subscribe-form): updates around observability (o11y) with a special focus on open source
-- [kubeweekly](https://www.cncf.io/kubeweekly/):CNCF Newsletter, The weekly newsletter for all things Kubernetes and beyond
+- [observability news](https://buttondown.email/o11y.news#subscribe-form): updates around observability (o11y) with a special focus on open source  
+- [kubeweekly](https://www.cncf.io/kubeweekly/): CNCF Newsletter, The weekly newsletter for all things Kubernetes and beyond  
+- [OpenSSF](https://openssf.org/sign-up/): receive marketing emails from the LF and its projects regarding their events, training, research, developments, and related announcements  
+## Communities
+- [CNCF Slack](https://slack.cncf.io):CNCF Slack workspace. Meet people, learn and contribute  
+- [OpenSSF Slack](http://slack.openssf.org/):OpenSSF Slack workspace. Meet people, learn and contribute  
+- [OWASP Slack](https://owasp.org/slack/invite):OWASP Slack workspace. Meet people, learn and contribute  
