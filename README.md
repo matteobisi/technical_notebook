@@ -16,7 +16,7 @@ The intention is to collect technical information in a public place that I might
 - [kubeweekly](https://www.cncf.io/kubeweekly/): CNCF Newsletter, The weekly newsletter for all things Kubernetes and beyond  
 - [OpenSSF](https://openssf.org/sign-up/): receive marketing emails from the LF and its projects regarding their events, training, research, developments, and related announcements  
 ## Reccomended Opensource Projects
-- [OpenTofu](https://opentofu.org/): rPreviously named OpenTF, OpenTofu is a fork of Terraform that is open-source, community-driven, and managed by the Linux Foundation.  
+- [OpenTofu](https://opentofu.org/): Previously named OpenTF, OpenTofu is a fork of Terraform that is open-source, community-driven, and managed by the Linux Foundation.  
 ## Communities
 - [CNCF Slack](https://slack.cncf.io):CNCF Slack workspace. Meet people, learn and contribute  
 - [OpenSSF Slack](http://slack.openssf.org/):OpenSSF Slack workspace. Meet people, learn and contribute  
