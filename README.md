@@ -8,7 +8,6 @@ The intention is to collect technical information in a public place that I might
 
 [00_markdown](runbooks/00_markdown.md): A short list of syntax needed to write file like this  
 [01_cryptsetup](runbooks/01_cryptsetup.md): How handle USB drive safetely with encryption
-[02_Fedora40](runbooks/02_fedora40.md): Some note about Fedora40 post installation tasks
 
 # Links  
 ## Mailing List
