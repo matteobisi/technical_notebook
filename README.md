@@ -27,6 +27,8 @@ The intention is to collect technical information in a public place that I might
 - [CNCF Slack](https://slack.cncf.io):CNCF Slack workspace. Meet people, learn and contribute  
 - [OpenSSF Slack](http://slack.openssf.org/):OpenSSF Slack workspace. Meet people, learn and contribute  
 - [OWASP Slack](https://owasp.org/slack/invite):OWASP Slack workspace. Meet people, learn and contribute  
+## Tech things (miscellaneous)
+- [T2 Linux](https://t2linux.org/) If you have an unsupported macbook to revive with linux, this site will give you comprehensive guides and iso linux with T2 drivers  
 ## Links Collections
 - [Kubetools](https://collabnix.github.io/kubetools/): A Curated List of Kubernetes Tools 
 
