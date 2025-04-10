@@ -31,5 +31,6 @@ The intention is to collect technical information in a public place that I might
 - [T2 Linux](https://t2linux.org/) If you have an unsupported macbook to revive with linux, this site will give you comprehensive guides and iso linux with T2 drivers  
 ## Links Collections
 - [Kubetools](https://collabnix.github.io/kubetools/): A Curated List of Kubernetes Tools 
+- [LFEL1007](https://training.linuxfoundation.org/express-learning/automating-supply-chain-security-sboms-and-signatures-lfel1007/): Free LF course; Automating Supply Chain Security: SBOMs and Signatures 
 
 
