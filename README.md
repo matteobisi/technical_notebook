@@ -17,7 +17,6 @@ The intention is to collect technical information in a public place that I might
 ## Mailing List
 - [Cloudseclist](https://cloudseclist.com/): security newsletter curated by [Marco Lancini](https://www.marcolancini.it/)  
 - [observability news](https://buttondown.email/o11y.news#subscribe-form): updates around observability (o11y) with a special focus on open source  
-- [kubeweekly](https://github.com/chainguard-dev/apko/): CNCF Newsletter, The weekly newsletter for all things Kubernetes and beyond  
 - [OpenSSF](https://openssf.org/sign-up/): receive marketing emails from the LF and its projects regarding their events, training, research, developments, and related announcements  
 ## Reccomended Opensource Projects
 - [OpenTofu](https://opentofu.org/): Previously named OpenTF, OpenTofu is a fork of Terraform that is open-source, community-driven, and managed by the Linux Foundation.  
@@ -25,6 +24,7 @@ The intention is to collect technical information in a public place that I might
 - [apko](https://github.com/chainguard-dev/apko): Build and publish OCI container images built from apk packages.  
 - [Wolfi](https://github.com/wolfi-dev): Wolfi is the first community Linux (un)distribution declaratively built for creating a secure base layer for your containers.  
 - [Kubescape](https://kubescape.io): Kubescape is an open-source Kubernetes security platform that provides comprehensive security coverage, from left to right across the entire development and deployment lifecycle.  
+- [MarkItDown](https://github.com/microsoft/markitdown): Microsoft python tool to convert documents to markdown
 ## Communities
 - [CNCF Slack](https://slack.cncf.io):CNCF Slack workspace. Meet people, learn and contribute  
 - [OpenSSF Slack](http://slack.openssf.org/):OpenSSF Slack workspace. Meet people, learn and contribute  
