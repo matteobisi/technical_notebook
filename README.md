@@ -12,6 +12,7 @@ The intention is to collect technical information in a public place that I might
 [03_ConjurCli8](runbooks/03_conjur_cli_8.md): I need to trace the usage of the Conjur cli 8   
 [04_WoeUSB](runbooks/04_WoeUSB.md): If you need to build a bootable USB Key Windows, from Linux     
 [05_Hugo](runbooks/05_hugo.md): Some notes taken during the setup of my blog, www.msbiro.net  
+[06_sshd](runbooks/06_sshd.md): some notes about sshd config  
 
 # Links  
 ## Mailing List
