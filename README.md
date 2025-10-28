@@ -13,6 +13,7 @@ The intention is to collect technical information in a public place that I might
 [04_WoeUSB](runbooks/04_WoeUSB.md): If you need to build a bootable USB Key Windows, from Linux     
 [05_Hugo](runbooks/05_hugo.md): Some notes taken during the setup of my blog, www.msbiro.net  
 [06_sshd](runbooks/06_sshd.md): some notes about sshd config  
+[07_bash_commands](runbooks/07_bash_commands.md): A cheatsheet for common bash commands
 
 # Links  
 ## Mailing List
@@ -34,6 +35,4 @@ The intention is to collect technical information in a public place that I might
 - [T2 Linux](https://t2linux.org/) If you have an unsupported macbook to revive with linux, this site will give you comprehensive guides and iso linux with T2 drivers  
 ## Links Collections
 - [Kubetools](https://collabnix.github.io/kubetools/): A Curated List of Kubernetes Tools 
-- [LFEL1007](https://training.linuxfoundation.org/express-learning/automating-supply-chain-security-sboms-and-signatures-lfel1007/): Free LF course; Automating Supply Chain Security: SBOMs and Signatures 
-
-
+- [LFEL1007](https://training.linuxfoundation.org/express-learning/automating-supply-chain-security-sboms-and-signatures-lfel1007/): Free LF course; Automating Supply Chain Security: SBOMs and Signatures
