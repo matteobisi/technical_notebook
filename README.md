@@ -1,38 +1,67 @@
 # technical_notebook
+
 A personal notebook where I can write down technological notes that might be useful to me in the future (and hopefully to others as well).
 
 The intention is to collect technical information in a public place that I might not use frequently, helping myself and possibly others to avoid having to relearn commands or concepts.
 
+## Table of Contents
 
-# Technical runbooks/notes    
+- [Technical Runbooks/Notes](#technical-runbooksnotes)
+- [Resources](#resources)
+  - [Learning Resources](#learning-resources)
+  - [Communities](#communities)
+  - [Tools](#tools)
+- [Contributing](#contributing)
 
-[00_markdown](runbooks/00_markdown.md): A short list of syntax needed to write file like this  
-[01_cryptsetup](runbooks/01_cryptsetup.md): How handle USB drive safetely with encryption  
-[02_Fedora40](runbooks/02_fedora40.md): Some note about Fedora40 post installation tasks on my laptop  
-[03_ConjurCli8](runbooks/03_conjur_cli_8.md): I need to trace the usage of the Conjur cli 8   
-[04_WoeUSB](runbooks/04_WoeUSB.md): If you need to build a bootable USB Key Windows, from Linux     
-[05_Hugo](runbooks/05_hugo.md): Some notes taken during the setup of my blog, www.msbiro.net  
-[06_sshd](runbooks/06_sshd.md): some notes about sshd config  
-[07_bash_commands](runbooks/07_bash_commands.md): A cheatsheet for common bash commands
+---
 
-# Links  
-## Mailing List
-- [Cloudseclist](https://cloudseclist.com/): security newsletter curated by [Marco Lancini](https://www.marcolancini.it/)  
-- [observability news](https://buttondown.email/o11y.news#subscribe-form): updates around observability (o11y) with a special focus on open source  
-- [OpenSSF](https://openssf.org/sign-up/): receive marketing emails from the LF and its projects regarding their events, training, research, developments, and related announcements  
-## Reccomended Opensource Projects
-- [OpenTofu](https://opentofu.org/): Previously named OpenTF, OpenTofu is a fork of Terraform that is open-source, community-driven, and managed by the Linux Foundation.  
-- [OpenBao](https://openbao.org/): OpenBao is a fork of Vault that is open-source, community-driven, and managed by the Linux Foundation.  
-- [apko](https://github.com/chainguard-dev/apko): Build and publish OCI container images built from apk packages.  
-- [Wolfi](https://github.com/wolfi-dev): Wolfi is the first community Linux (un)distribution declaratively built for creating a secure base layer for your containers.  
-- [Kubescape](https://kubescape.io): Kubescape is an open-source Kubernetes security platform that provides comprehensive security coverage, from left to right across the entire development and deployment lifecycle.  
-- [MarkItDown](https://github.com/microsoft/markitdown): Microsoft python tool to convert documents to markdown
-## Communities
-- [CNCF Slack](https://slack.cncf.io):CNCF Slack workspace. Meet people, learn and contribute  
-- [OpenSSF Slack](http://slack.openssf.org/):OpenSSF Slack workspace. Meet people, learn and contribute  
-- [OWASP Slack](https://owasp.org/slack/invite):OWASP Slack workspace. Meet people, learn and contribute  
-## Tech things (miscellaneous)
-- [T2 Linux](https://t2linux.org/) If you have an unsupported macbook to revive with linux, this site will give you comprehensive guides and iso linux with T2 drivers  
-## Links Collections
-- [Kubetools](https://collabnix.github.io/kubetools/): A Curated List of Kubernetes Tools 
-- [LFEL1007](https://training.linuxfoundation.org/express-learning/automating-supply-chain-security-sboms-and-signatures-lfel1007/): Free LF course; Automating Supply Chain Security: SBOMs and Signatures
+## Technical Runbooks/Notes
+
+- [00_markdown](runbooks/00_markdown.md): A cheatsheet for Markdown syntax.
+- [01_cryptsetup](runbooks/01_cryptsetup.md): How to handle USB drives safely with encryption.
+- [02_Fedora40](runbooks/02_fedora40.md): Notes on post-installation tasks for Fedora 40.
+- [03_ConjurCli8](runbooks/03_conjur_cli_8.md): Tracing the usage of the Conjur CLI v8.
+- [04_WoeUSB](runbooks/04_WoeUSB.md): How to build a bootable Windows USB key from Linux.
+- [05_Hugo](runbooks/05_hugo.md): Notes on setting up a Hugo blog.
+- [06_sshd](runbooks/06_sshd.md): Notes on sshd configuration.
+- [07_bash_commands](runbooks/07_bash_commands.md): A cheatsheet for common bash commands.
+
+---
+
+## Resources
+
+### Learning Resources
+
+- **Mailing Lists**
+  - [Cloudseclist](https://cloudseclist.com/): A security newsletter curated by Marco Lancini.
+  - [observability news](https://buttondown.email/o11y.news#subscribe-form): Updates around observability (o11y) with a special focus on open source.
+  - [OpenSSF](https://openssf.org/sign-up/): Marketing emails from the LF and its projects regarding their events, training, research, developments, and related announcements.
+- **Courses**
+  - [LFEL1007](https://training.linuxfoundation.org/express-learning/automating-supply-chain-security-sboms-and-signatures-lfel1007/): A free Linux Foundation course on automating supply chain security with SBOMs and signatures.
+
+### Communities
+
+- [CNCF Slack](https://slack.cncf.io): The official CNCF Slack workspace.
+- [OpenSSF Slack](http://slack.openssf.org/): The official OpenSSF Slack workspace.
+- [OWASP Slack](https://owasp.org/slack/invite): The official OWASP Slack workspace.
+
+### Tools
+
+- **Open Source Projects**
+  - [OpenTofu](https://opentofu.org/): A fork of Terraform that is open-source, community-driven, and managed by the Linux Foundation.
+  - [OpenBao](https://openbao.org/): A fork of Vault that is open-source, community-driven, and managed by the Linux Foundation.
+  - [apko](https://github.com/chainguard-dev/apko): A tool to build and publish OCI container images from apk packages.
+  - [Wolfi](https://github.com/wolfi-dev): A community Linux (un)distribution built for creating a secure base layer for containers.
+  - [Kubescape](https://kubescape.io): An open-source Kubernetes security platform.
+  - [MarkItDown](https://github.com/microsoft/markitdown): A Microsoft Python tool to convert documents to Markdown.
+- **Tool Collections**
+  - [Kubetools](https://collabnix.github.io/kubetools/): A curated list of Kubernetes tools.
+- **Miscellaneous**
+    - [T2 Linux](https://t2linux.org/): A guide to installing Linux on unsupported MacBooks with T2 chips.
+
+
+---
+
+## Contributing
+
+This is a personal notebook, but contributions are welcome. If you have any suggestions or improvements, please open an issue or a pull request.
