@@ -25,6 +25,7 @@ The intention is to collect technical information in a public place that I might
 - [05_Hugo](runbooks/05_hugo.md): Notes on setting up a Hugo blog.
 - [06_sshd](runbooks/06_sshd.md): Notes on sshd configuration.
 - [07_bash_commands](runbooks/07_bash_commands.md): A cheatsheet for common bash commands.
+- [08_resize_linux_partition](runbooks/08_resize_linux_partition.md): A guide on how to resize Linux partitions.
 
 ---
 
