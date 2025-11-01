@@ -36,7 +36,7 @@ The intention is to collect technical information in a public place that I might
 - **Mailing Lists**
   - [Cloudseclist](https://cloudseclist.com/): A security newsletter curated by Marco Lancini.
   - [DevOps'ish](https://devopsish.com/): A weekly newsletter that covers everything from DevOps and cloud-native to open source and software development.
-  - [LWN.net Weekly Edition](https://lwn.net/weekly/): A weekly newsletter that provides in-depth coverage of the Linux kernel, security, and other open-source topics.
+  - [LWN.net Weekly Edition](https://lwn.net/subscribe/): A weekly newsletter that provides in-depth coverage of the Linux kernel, security, and other open-source topics.
   - [observability news](https://buttondown.email/o11y.news#subscribe-form): Updates around observability (o11y) with a special focus on open source.
   - [OpenSSF](https://openssf.org/sign-up/): Marketing emails from the LF and its projects regarding their events, training, research, developments, and related announcements.
   - [Snyk Security Newsletter](https://snyk.io/newsletter/): Development and container security vulnerabilities and fixes.
