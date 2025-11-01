@@ -35,10 +35,18 @@ The intention is to collect technical information in a public place that I might
 
 - **Mailing Lists**
   - [Cloudseclist](https://cloudseclist.com/): A security newsletter curated by Marco Lancini.
+  - [DevOps'ish](https://devopsish.com/): A weekly newsletter that covers everything from DevOps and cloud-native to open source and software development.
+  - [LWN.net Weekly Edition](https://lwn.net/weekly/): A weekly newsletter that provides in-depth coverage of the Linux kernel, security, and other open-source topics.
   - [observability news](https://buttondown.email/o11y.news#subscribe-form): Updates around observability (o11y) with a special focus on open source.
   - [OpenSSF](https://openssf.org/sign-up/): Marketing emails from the LF and its projects regarding their events, training, research, developments, and related announcements.
+  - [Snyk Security Newsletter](https://snyk.io/newsletter/): Development and container security vulnerabilities and fixes.
+  - [tldrsec](https://tldrsec.com/): A weekly newsletter that summarizes the most interesting stories in cybersecurity.
+
 - **Courses**
-  - [LFEL1007](https://training.linuxfoundation.org/express-learning/automating-supply-chain-security-sboms-and-signatures-lfel1007/): A free Linux Foundation course on automating supply chain security with SBOMs and signatures.
+  - [Automating Supply Chain Security](https://training.linuxfoundation.org/express-learning/automating-supply-chain-security-sboms-and-signatures-lfel1007/): A free Linux Foundation course on automating supply chain security with SBOMs and signatures.
+  - [Introduction to Cloud Security](https://www.simplilearn.com/introduction-to-cloud-security-free-course): A free course by Simplilearn that covers the fundamentals of cloud security.
+  - [Introduction to Kubernetes](https://www.edx.org/learn/kubernetes/the-linux-foundation-introduction-to-kubernetes): A free course by the Linux Foundation on edX that provides foundational knowledge of Kubernetes.
+  - [Deep Dive on Container Security](https://explore.skillbuilder.aws/learn/course/external/view/elearning/13209/deep-dive-on-container-security): A free course by AWS Skill Builder that focuses on container security.
 
 ### Communities
 
