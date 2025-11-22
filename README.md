@@ -27,6 +27,7 @@ The intention is to collect technical information in a public place that I might
 - [07_bash_commands](runbooks/07_bash_commands.md): A cheatsheet for common bash commands.
 - [08_resize_linux_partition](runbooks/08_resize_linux_partition.md): A guide on how to resize Linux partitions.
 - [09_github_copilot_cli](runbooks/09_github_copilot_cli.md): A practical guide to working with GitHub Copilot CLI.
+- [10_kitty_terminal](runbooks/10_kitty_terminal.md): A cheatsheet for the Kitty terminal.
 
 ---
 
