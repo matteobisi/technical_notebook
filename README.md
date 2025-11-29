@@ -11,6 +11,7 @@ The intention is to collect technical information in a public place that I might
   - [Learning Resources](#learning-resources)
   - [Communities](#communities)
   - [Tools](#tools)
+  - [AI](#ai)
 - [Contributing](#contributing)
 
 ---
@@ -70,6 +71,11 @@ The intention is to collect technical information in a public place that I might
 - **Miscellaneous**
     - [T2 Linux](https://t2linux.org/): A guide to installing Linux on unsupported MacBooks with T2 chips.
 
+### AI
+
+- [OpenSpec](https://github.com/Fission-AI/OpenSpec): A framework for spec-driven development used in the AI-Automation project to formalize AI agent behavior through detailed specifications.
+- [GitHub SpecKit](https://github.com/github/spekkit): An open-source toolkit by GitHub for formalized spec-driven development with AI coding agents, promoting structured and verifiable AI-powered software development.
+- [BMAD-METHOD](https://github.com/bmadcode/BMAD-METHOD): A framework for agile AI-driven development that leverages specialized AI agents across the development lifecycle, from planning to implementation.
 
 ---
 
