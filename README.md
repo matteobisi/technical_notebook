@@ -29,6 +29,7 @@ The intention is to collect technical information in a public place that I might
 - [08_resize_linux_partition](runbooks/08_resize_linux_partition.md): A guide on how to resize Linux partitions.
 - [09_github_copilot_cli](runbooks/09_github_copilot_cli.md): A practical guide to working with GitHub Copilot CLI.
 - [10_kitty_terminal](runbooks/10_kitty_terminal.md): A cheatsheet for the Kitty terminal.
+- [11_ghostty_terminal](runbooks/11_ghostty_terminal.md): Configuration guide for the Ghostty terminal emulator.
 
 ---
 
@@ -66,16 +67,16 @@ The intention is to collect technical information in a public place that I might
   - [Wolfi](https://github.com/wolfi-dev): A community Linux (un)distribution built for creating a secure base layer for containers.
   - [Kubescape](https://kubescape.io): An open-source Kubernetes security platform.
   - [MarkItDown](https://github.com/microsoft/markitdown): A Microsoft Python tool to convert documents to Markdown.
-- [Fresh](https://github.com/sinelaw/fresh): A really nice text editor for your terminal, with default keybining and mouse support.
+- [Fresh](https://github.com/sinelaw/fresh): A really nice text editor for your terminal, with default keybindings and mouse support.
 - **Tool Collections**
   - [Kubetools](https://collabnix.github.io/kubetools/): A curated list of Kubernetes tools.
 - **Miscellaneous**
-    - [T2 Linux](https://t2linux.org/): A guide to installing Linux on unsupported MacBooks with T2 chips.
+  - [T2 Linux](https://t2linux.org/): A guide to installing Linux on unsupported MacBooks with T2 chips.
 
 ### AI
 
 - [OpenSpec](https://github.com/Fission-AI/OpenSpec): A framework for spec-driven development used in the AI-Automation project to formalize AI agent behavior through detailed specifications.
-- [GitHub SpecKit](https://github.com/github/spekkit): An open-source toolkit by GitHub for formalized spec-driven development with AI coding agents, promoting structured and verifiable AI-powered software development.
+- [GitHub SpecKit](https://github.com/github/spec-kit): An open-source toolkit by GitHub for formalized spec-driven development with AI coding agents, promoting structured and verifiable AI-powered software development.
 - [BMAD-METHOD](https://github.com/bmadcode/BMAD-METHOD): A framework for agile AI-driven development that leverages specialized AI agents across the development lifecycle, from planning to implementation.
 
 ---
