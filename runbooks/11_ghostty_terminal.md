@@ -28,7 +28,7 @@ background-opacity = 0.9
 
 # Font configuration
 font-family = "Hack Nerd Font Mono"
-font-size = 13
+font-size = 15
 
 # Theme - Nord-inspired colors for better file/folder visibility
 # Background and foreground
