@@ -21,89 +21,90 @@ brew install font-hack-nerd-font
 ## Complete Configuration
 
 ```conf
-# Ghostty Terminal Configuration
-
+# Ghostty Configuration
+# Reload with: Cmd+Shift+Comma
 # Transparency (90% opaque = 10% transparent)
 background-opacity = 0.9
+# ==========================
+# FONT SETTINGS
+# ==========================
+# Using the same font from your Tabby config
+font-family = MesloLGS NF
+font-size = 16
 
-# Font configuration
-font-family = "Hack Nerd Font Mono"
-font-size = 15
+# Font features for better rendering
+font-thicken = false
 
-# Theme - Nord-inspired colors for better file/folder visibility
-# Background and foreground
-background = #000000
-foreground = #d8dee9
+# ==========================
+# THEME & COLORS
+# ==========================
+theme = Duckbones
+# ==========================
+# WINDOW SETTINGS
+# ==========================
+window-padding-x = 8
+window-padding-y = 8
+window-padding-balance = true
+window-padding-color = background
 
-# Cursor
-cursor-color = #d8dee9
-
-# Selection
-selection-background = #4c566a
-selection-foreground = #d8dee9
-
-# Normal colors
-palette = 0=#3b4252
-palette = 1=#bf616a
-palette = 2=#a3be8c
-palette = 3=#ebcb8b
-palette = 4=#81a1c1
-palette = 5=#b48ead
-palette = 6=#88c0d0
-palette = 7=#e5e9f0
-
-# Bright colors
-palette = 8=#4c566a
-palette = 9=#bf616a
-palette = 10=#a3be8c
-palette = 11=#ebcb8b
-palette = 12=#81a1c1
-palette = 13=#b48ead
-palette = 14=#8fbcbb
-palette = 15=#eceff4
-
-# Window settings
-window-padding-x = 10
-window-padding-y = 10
-
-# Shell integration for better colors
-shell-integration = detect
-
-# macOS-specific settings
+# macOS specific
 macos-titlebar-style = tabs
+macos-option-as-alt = false
+window-decoration = true
+
+# ==========================
+# BEHAVIOR
+# ==========================
+# Scrollback
+scrollback-limit = 10000
+
+# Mouse
+mouse-hide-while-typing = true
+copy-on-select = false
+
+# Shell integration (recommended)
+shell-integration = detect
+shell-integration-features = cursor,sudo,title
+
+# Command to run (default shell)
+command = /bin/zsh --login
+
+# Split panes
+#keybind = super+d=new_split:down
+#keybind = super+shift+d=new_split:right
+
+# Allow Ctrl+J to pass through (for Copilot CLI new line)
+keybind = ctrl+j=text:\x0a
+
+# ==========================
+# CLIPBOARD
+# ==========================
+clipboard-read = allow
+clipboard-write = allow
+clipboard-trim-trailing-spaces = true
+
+# ==========================
+# MISC
+# ==========================
+# Confirm before closing with running processes
+confirm-close-surface = true
 
 # Cursor settings
 cursor-style = block
 cursor-style-blink = true
 
-# Copy/paste behavior
-copy-on-select = true
-clipboard-trim-trailing-spaces = true
-
-# Mouse
-mouse-hide-while-typing = true
-
-# Window
-window-save-state = always
-confirm-close-surface = false
-
-# Performance
-unfocused-split-opacity = 0.8
-
-# Keybinds - ensure Ctrl+J passes through for newlines
-keybind = ctrl+j=text:\x0a
+# Window theme
+window-theme = auto
 ```
 
-## Shell Configuration for Colors
+## Themes
 
-Add to `~/.zshrc`:
-
+To preview available themes:
 ```bash
-# Enable colored output for ls
-export CLICOLOR=1
-export LSCOLORS=ExGxFxdaCxDaDahbadacec
-alias ls='ls -G'
+ghostty +list-themes
 ```
+
+The current configuration uses the `Duckbones` theme. You can change it by modifying the `theme` setting in the config file.
 
 ## Default Keybindings
 
