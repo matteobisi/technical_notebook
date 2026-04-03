@@ -30,6 +30,7 @@ The intention is to collect technical information in a public place that I might
 - [09_github_copilot_cli](runbooks/09_github_copilot_cli.md): A practical guide to working with GitHub Copilot CLI.
 - [10_kitty_terminal](runbooks/10_kitty_terminal.md): A cheatsheet for the Kitty terminal.
 - [11_ghostty_terminal](runbooks/11_ghostty_terminal.md): Configuration guide for the Ghostty terminal emulator.
+- [12_docker_sandboxes_sbx](runbooks/12_docker_sandboxes_sbx.md): Runbook for Docker Sandboxes (sbx) — running AI agents in isolated microVMs.
 
 ---
 
