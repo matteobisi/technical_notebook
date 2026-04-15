@@ -6,6 +6,7 @@ The intention is to collect technical information in a public place that I might
 
 ## Table of Contents
 
+- [Product Documentation](#product-documentation)
 - [Technical Runbooks/Notes](#technical-runbooksnotes)
 - [Resources](#resources)
   - [Learning Resources](#learning-resources)
@@ -13,6 +14,21 @@ The intention is to collect technical information in a public place that I might
   - [Tools](#tools)
   - [AI](#ai)
 - [Contributing](#contributing)
+
+---
+
+## Product Documentation
+
+Standardized, AI-assisted, source-backed reference documentation for DevSecOps tools and
+products. Content is generated from official sources and cites all references. See
+[`docs/`](docs/README.md) for the full index.
+
+| Product | Description |
+|---------|-------------|
+| [OpenBao](docs/openbao/README.md) | Identity-based secrets and encryption management (LF Edge) |
+
+> **To update existing docs**: tell the agent "update docs for `<product>`".
+> **To add a new product**: tell the agent "add docs for `<product>` from `<URL1>`, `<URL2>`, ...".
 
 ---
 
