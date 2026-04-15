@@ -36,6 +36,12 @@ storage backend, expiration manager), data flow, and deployment topologies: dev 
 single-node production, Raft HA cluster, Kubernetes via Helm. Mermaid diagrams are required
 for at least the component diagram and the HA topology.
 
+Includes a **Deployment Platform Comparison** section covering the security preference ordering
+(Bare Metal > VM > Container > Kubernetes) for running a secrets manager, with a Mermaid
+isolation-stack diagram, per-platform pros/cons tables, required hardening steps for Kubernetes,
+and a six-criterion decision matrix. Update this section if the official hardening guidance,
+Helm chart capabilities, or cloud KMS auto-unseal options change significantly.
+
 **Sources**:
 - https://openbao.org/docs/internals/architecture/
 - https://openbao.org/docs/concepts/integrated-storage/
