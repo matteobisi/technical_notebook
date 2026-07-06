@@ -7,6 +7,7 @@ The intention is to collect technical information in a public place that I might
 ## Table of Contents
 
 - [Product Documentation](#product-documentation)
+- [Projects](#projects)
 - [Technical Runbooks/Notes](#technical-runbooksnotes)
 - [Resources](#resources)
   - [Learning Resources](#learning-resources)
@@ -29,6 +30,17 @@ products. Content is generated from official sources and cites all references. S
 
 > **To update existing docs**: tell the agent "update docs for `<product>`".
 > **To add a new product**: tell the agent "add docs for `<product>` from `<URL1>`, `<URL2>`, ...".
+
+---
+
+## Projects
+
+Small, self-contained proof-of-concept projects (README, scripts, configuration) that don't
+warrant a dedicated repository. See [`projects/`](projects/README.md) for the full index.
+
+| Project | Description |
+|---------|-------------|
+| [speech](projects/speech/README.md) | POC testing Docker Agent and Docker Model Runner for speech/transcript processing. |
 
 ---
 
