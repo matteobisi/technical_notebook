@@ -60,6 +60,8 @@ Key points from the official architecture documentation:
   read/write their own data, not data from other engines.
 - The **expiration manager** handles lease TTLs and automatically revokes secrets whose leases
   expire.
+- The **`sys/` backend** is shared across namespaces in current OpenBao releases instead of being
+  instantiated per namespace.
 - Every request and response passes through the **audit broker**, which distributes logs to all
   configured audit devices.
 
@@ -390,6 +392,6 @@ or a TPM chip on the board.
 ## Sources
 
 - https://openbao.org/docs/internals/architecture/
-- https://openbao.org/docs/concepts/seal/
-- https://openbao.org/docs/configuration/
+- https://openbao.org/docs/concepts/integrated-storage/
 - https://openbao.org/docs/platform/k8s/helm/
+- https://github.com/openbao/openbao/blob/main/CHANGELOG.md

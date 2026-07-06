@@ -82,6 +82,27 @@ environment first.
 
 ---
 
+### Q: Are namespaces available in the open-source release?
+
+**A**: Yes. OpenBao v2.x includes namespaces in the open-source distribution. In the v2.5 line,
+namespace creation also gained namespace sealing support, which allows a namespace to be created
+with its own Shamir seal configuration and then sealed independently of other tenants.
+
+---
+
+### Q: How should I generate a new root token on current releases?
+
+**A**: Use `bao operator generate-root`. OpenBao v2.5 moves root generation to authenticated
+`/sys/generate-root-token` endpoints and deprecates the older unauthenticated generate-root
+routes.
+
+```bash
+bao operator generate-root -init
+bao operator generate-root -status
+```
+
+---
+
 ### Q: How do I back up and restore an OpenBao cluster?
 
 **A**: For Raft (integrated) storage:
@@ -139,7 +160,7 @@ use them when you need renewability or need to revoke them individually.
 |----------|-----|
 | Official Website | https://openbao.org/ |
 | Documentation | https://openbao.org/docs/ |
-| API Documentation (v2.3.x) | https://openbao.org/api-docs/2.3.x/ |
+| API Documentation | https://openbao.org/api-docs/ |
 | GitHub Repository | https://github.com/openbao/openbao |
 | Helm Chart Repository | https://github.com/openbao/openbao-helm |
 | Downloads | https://openbao.org/downloads/ |
@@ -155,7 +176,10 @@ use them when you need renewability or need to revoke them individually.
 ## Sources
 
 - https://openbao.org/docs/what-is-openbao/
+- https://github.com/openbao/openbao
+- https://github.com/openbao/openbao/blob/main/CHANGELOG.md
 - https://openbao.org/docs/concepts/seal/
 - https://openbao.org/docs/concepts/tokens/
 - https://openbao.org/docs/configuration/
-- https://openbao.org/api-docs/2.3.x/
+- https://openbao.org/docs/commands/operator/generate-root/
+- https://openbao.org/api-docs/

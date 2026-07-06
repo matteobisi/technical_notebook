@@ -204,6 +204,13 @@ bao write database/roles/my-role \
 bao read database/creds/my-role
 ```
 
+Current database secrets engine behavior also includes:
+
+- **Static roles** for 1:1 mapping between an OpenBao role and a database user whose password
+  OpenBao rotates on a schedule.
+- **Credential types** beyond username/password where supported by the database plugin.
+- **MySQL multi-host failover** in the v2.5 line by allowing multiple hosts in the connection URL.
+
 ---
 
 ## TOTP — Time-Based One-Time Passwords
@@ -267,4 +274,8 @@ bao read cubbyhole/my-secret
 
 - https://openbao.org/docs/secrets/
 - https://openbao.org/docs/secrets/kv/kv-v2/
-- https://openbao.org/api-docs/2.3.x/secret/
+- https://openbao.org/docs/secrets/pki/
+- https://openbao.org/docs/secrets/transit/
+- https://openbao.org/docs/secrets/ssh/
+- https://openbao.org/docs/secrets/databases/
+- https://github.com/openbao/openbao/blob/main/CHANGELOG.md

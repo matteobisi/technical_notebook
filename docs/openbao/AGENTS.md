@@ -9,7 +9,7 @@
 
 - **version_check_url**: https://github.com/openbao/openbao/releases/latest
 - **changelog_url**: https://github.com/openbao/openbao/blob/main/CHANGELOG.md
-- **version**: v2.3.x
+- **version**: v2.5.5
 
 ---
 
@@ -94,7 +94,7 @@ delete, kv get, kv put, lease renew, lease revoke) and commonly used HTTP API en
 `curl` examples. Note: the binary is `bao`, not `vault`.
 
 **Sources**:
-- https://openbao.org/api-docs/2.3.x/
+- https://openbao.org/api-docs/
 - https://openbao.org/docs/commands/
 
 ---

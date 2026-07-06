@@ -91,9 +91,7 @@ bao auth enable kubernetes
 
 # Configure OpenBao to talk to Kubernetes
 bao write auth/kubernetes/config \
-  kubernetes_host="https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT" \
-  kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-  # token_reviewer_jwt omitted: OpenBao uses its own pod's SA token
+  kubernetes_host="https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT"
 
 # Create a role
 bao write auth/kubernetes/role/myapp \
@@ -112,9 +110,15 @@ bao write auth/kubernetes/login \
   jwt=$JWT
 ```
 
-> **Kubernetes 1.21+**: set `disable_iss_validation=true` (it is the default) because pod tokens
-> are short-lived and bound to the pod lifecycle. Consider using OpenBao's own SA token as the
-> reviewer JWT to handle token rotation automatically.
+```bash
+JWT=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+bao login -method=kubernetes role=myapp jwt="$JWT"
+```
+
+> **Kubernetes 1.21+**: `disable_iss_validation=true` is the recommended value and current
+> default for new mounts. When OpenBao runs in Kubernetes, omitting `token_reviewer_jwt` and
+> `kubernetes_ca_cert` lets it use the pod's local service account token and CA certificate from
+> `/var/run/secrets/kubernetes.io/serviceaccount/`.
 
 ---
 
@@ -263,4 +267,7 @@ bao login -method=cert -client-cert=client.crt -client-key=client.key
 - https://openbao.org/docs/auth/
 - https://openbao.org/docs/auth/approle/
 - https://openbao.org/docs/auth/kubernetes/
-- https://openbao.org/api-docs/2.3.x/auth/
+- https://openbao.org/docs/auth/jwt/
+- https://openbao.org/docs/auth/ldap/
+- https://openbao.org/docs/commands/login/
+- https://github.com/openbao/openbao/blob/main/CHANGELOG.md

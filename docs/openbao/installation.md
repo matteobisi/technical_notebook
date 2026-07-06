@@ -67,6 +67,14 @@ OpenBao publishes Alpine-based and RHEL UBI-based container images to three regi
 | Quay.io | `quay.io/openbao/openbao-ubi` |
 | Docker Hub | `docker.io/openbao/openbao-ubi` |
 
+### Distroless
+
+| Registry | Image |
+|----------|-------|
+| GitHub Container Registry | `ghcr.io/openbao/openbao-distroless` |
+| Quay.io | `quay.io/openbao/openbao-distroless` |
+| Docker Hub | `docker.io/openbao/openbao-distroless` |
+
 ```bash
 # Run a dev server in Docker
 docker run --rm \
@@ -245,3 +253,4 @@ OpenBao protects secrets in memory, but OS swap can expose them. After installat
 
 - https://openbao.org/docs/install/
 - https://openbao.org/docs/platform/k8s/helm/
+- https://github.com/openbao/openbao/blob/main/CHANGELOG.md

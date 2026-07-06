@@ -1,7 +1,7 @@
 # OpenBao
 
-> **Version tracked**: `v2.3.x`
-> **Last updated**: `2026-04-15`
+> **Version tracked**: `v2.5.5`
+> **Last updated**: `2026-07-06`
 
 OpenBao is an identity-based secrets and encryption management system, forked from HashiCorp
 Vault and managed by the Linux Foundation (LF Edge). It provides authentication-gated encryption

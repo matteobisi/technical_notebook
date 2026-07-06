@@ -10,7 +10,9 @@ accept the legacy `VAULT_` prefix for compatibility with HashiCorp Vault clients
 ```bash
 export BAO_ADDR="https://openbao.example.com:8200"
 export BAO_TOKEN="<your-token>"
+export BAO_NAMESPACE="team-a/"
 export BAO_CACERT="/etc/openbao/tls/ca.crt"  # if using a custom CA
+export BAO_TOKEN_PATH="$HOME/.config/openbao/token"
 ```
 
 ---
@@ -27,7 +29,7 @@ export BAO_CACERT="/etc/openbao/tls/ca.crt"  # if using a custom CA
 | `bao operator step-down` | Force the active node to step down as leader |
 | `bao operator raft list-peers` | List Raft cluster members |
 | `bao operator raft join https://leader:8200` | Join this node to a Raft cluster |
-| `bao operator generate-root` | Generate a new root token (requires unseal key quorum) |
+| `bao operator generate-root` | Generate a new root token using the authenticated generate-root-token workflow |
 | `bao operator rotate-keys` | Rotate the barrier encryption key |
 | `bao status` | Show seal status, cluster info, and leader |
 
@@ -52,6 +54,7 @@ bao operator unseal $(jq -r '.unseal_keys_b64[2]' init-output.json)
 | `bao auth list` | List enabled auth methods |
 | `bao auth tune -ttl=1h auth/approle/` | Tune mount configuration |
 | `bao login -method=<type>` | Authenticate and store token |
+| `bao login -method=kubernetes role=<role> jwt=<jwt>` | Authenticate with the Kubernetes auth method from a service account token |
 | `bao token create -policy=<p> -ttl=1h` | Create a service token |
 | `bao token renew <token>` | Renew a token |
 | `bao token revoke <token>` | Revoke a token and all its children |
@@ -120,6 +123,15 @@ path "auth/token/renew-self" {
 
 ---
 
+### Kubernetes Login Example
+
+```bash
+JWT=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+bao login -method=kubernetes role=myapp jwt="$JWT"
+```
+
+---
+
 ## HTTP API Reference
 
 Base URL: `https://<host>:8200/v1`
@@ -156,6 +168,11 @@ X-Vault-Namespace: <namespace>
 | `GET` | `/sys/policies/acl/<name>` | Read a policy |
 | `PUT` | `/sys/policies/acl/<name>` | Create/update a policy |
 | `DELETE` | `/sys/policies/acl/<name>` | Delete a policy |
+
+OpenBao v2.5 introduces authenticated `/sys/generate-root-token` endpoints as the replacement for
+deprecated unauthenticated generate-root routes. Prefer `bao operator generate-root` instead of
+calling legacy `/sys/generate-root/*` endpoints directly. The same release also adds
+`/sys/workflows` endpoints for operator-defined workflows.
 
 ### Token Endpoints
 
@@ -220,6 +237,9 @@ curl -s \
 
 ## Sources
 
-- https://openbao.org/api-docs/2.3.x/
+- https://openbao.org/api-docs/
+- https://openbao.org/docs/commands/
+- https://openbao.org/docs/commands/login/
+- https://openbao.org/docs/auth/kubernetes/
 - https://openbao.org/docs/secrets/kv/kv-v2/
-- https://openbao.org/docs/auth/approle/
+- https://github.com/openbao/openbao/blob/main/CHANGELOG.md

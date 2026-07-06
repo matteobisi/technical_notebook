@@ -11,9 +11,11 @@ a directory are loaded alphabetically. Pass the config path with `bao server -co
 |-----------|------|---------|-------------|
 | `storage` | block | **required** | Storage backend (see below) |
 | `listener` | block | **required** | API listener (TCP/TLS) |
+| `user_lockout` | block | `nil` | Failed-login lockout configuration for supported auth methods |
 | `seal` | block | `nil` | Auto-unseal provider; if omitted, Shamir is used |
 | `ha_storage` | block | `nil` | HA coordination backend if different from `storage` |
 | `audit` | block | none | Audit device configuration (repeatable) |
+| `initialize` | block | none | Declarative self-initialization requests run on first startup |
 | `ui` | bool | `false` | Enable built-in web UI at `/ui` |
 | `cluster_name` | string | generated | Identifier for the cluster |
 | `default_lease_ttl` | string | `"768h"` | Default token/secret lease duration |
@@ -22,6 +24,7 @@ a directory are loaded alphabetically. Pass the config path with `bao server -co
 | `disable_cache` | bool | `false` | Disable all caches (significant performance impact) |
 | `plugin_directory` | string | `""` | Directory from which plugins may be loaded |
 | `raw_storage_endpoint` | bool | `false` | Enable `sys/raw` (highly privileged; avoid in prod) |
+| `introspection_endpoint` | bool | `false` | Enable `sys/internal/inspect` for root/sudo inspection |
 | `disable_standby_reads` | bool | `false` | Disable read handling on standby nodes |
 
 ---
@@ -44,6 +47,9 @@ storage "raft" {
 | `path` | Local filesystem path where Raft data is stored |
 | `node_id` | Unique identifier for this node in the cluster |
 | `retry_join` | Repeated block to join an existing cluster (see HA example below) |
+
+> **Deprecation note**: the `file` storage backend is deprecated for removal in OpenBao v2.7.0.
+> Use Raft for persistent production deployments.
 
 ### Consul
 
@@ -126,6 +132,18 @@ seal "pkcs11" {
   key_label      = "openbao-unseal"
   hmac_key_label = "openbao-hmac"
 }
+```
+
+### KMS plugins (external Auto Unseal)
+
+OpenBao v2.5 adds a `kms` plugin type for external Auto Unseal integrations. A registered KMS
+plugin can then be referenced by name from a `seal` stanza. Built-in provider-specific seals are
+planned for removal in v2.7.0 and remain available as external plugins.
+
+```hcl
+plugin "kms" "example" {}
+
+seal "example" {}
 ```
 
 ---
@@ -224,6 +242,18 @@ log_level    = "warn"
 
 ---
 
+## Declarative Self-Initialization
+
+The `initialize` stanza lets operators define one-time bootstrap requests that run automatically
+on first startup. Current releases add stricter validation for unknown keys and extend
+self-initialization with CEL expressions, `text/template` rendering, conditional `when`
+execution, explicit request headers, and support in development server mode.
+
+Use this for repeatable bootstrap tasks such as enabling audit devices, auth methods, or mounts
+without manually replaying API calls after initialization.
+
+---
+
 ## Environment Variables
 
 OpenBao respects several environment variables that override config file values:
@@ -232,14 +262,17 @@ OpenBao respects several environment variables that override config file values:
 |----------|-------------|
 | `BAO_ADDR` | Client address (e.g., `https://openbao:8200`) |
 | `BAO_TOKEN` | Client token |
+| `BAO_NAMESPACE` | Namespace applied to client requests |
 | `BAO_CACERT` | Path to CA certificate for TLS verification |
 | `BAO_SKIP_VERIFY` | Skip TLS verification (`true`/`false`) — avoid in production |
 | `BAO_LOG_LEVEL` | Overrides `log_level` in config |
-| `BAO_UI` | Enables UI if set to `true` |
 
 ---
 
 ## Sources
 
 - https://openbao.org/docs/configuration/
-- https://openbao.org/docs/concepts/seal/
+- https://openbao.org/docs/configuration/storage/raft/
+- https://openbao.org/docs/configuration/seal/
+- https://openbao.org/docs/configuration/self-init/
+- https://github.com/openbao/openbao/blob/main/CHANGELOG.md

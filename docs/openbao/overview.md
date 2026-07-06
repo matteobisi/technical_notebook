@@ -63,6 +63,9 @@ stored sensitive data.
   (persistent, renewable) and `batch` (ephemeral, high-performance).
 - **Policy**: a named ACL rule using path-based allow/deny logic. OpenBao operates in
   *default-deny* mode — access is only permitted when a policy explicitly grants it.
+- **Namespace**: OpenBao v2.x includes namespaces in the open-source distribution. Namespaces
+  separate tenants by path and policy scope. In v2.5, namespace creation can also include a
+  Shamir seal configuration so a namespace can be sealed independently of other tenants.
 - **Secrets Engine**: a plugin mounted at a path that stores, generates, or encrypts data (e.g.,
   `kv/`, `pki/`, `transit/`).
 - **Auth Method**: a plugin that performs authentication and returns a token with policies (e.g.,
@@ -81,4 +84,5 @@ stored sensitive data.
 - https://openbao.org/docs/what-is-openbao/
 - https://openbao.org/docs/concepts/seal/
 - https://openbao.org/docs/concepts/tokens/
-- https://openbao.org/docs/internals/architecture/
+- https://openbao.org/docs/concepts/policies/
+- https://github.com/openbao/openbao/blob/main/CHANGELOG.md
