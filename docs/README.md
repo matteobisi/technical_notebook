@@ -10,7 +10,7 @@ Content is generated from official sources by AI agents following the rules in
 
 | Product | Description | Version | Last Updated |
 |---------|-------------|---------|--------------|
-| [OpenBao](./openbao/README.md) | Identity-based secrets and encryption management (LF Edge) | v2.3.x | 2026-04-15 |
+| [OpenBao](./openbao/README.md) | Identity-based secrets and encryption management (LF Edge) | v2.5.5 | 2026-07-06 |
 
 ---
 
