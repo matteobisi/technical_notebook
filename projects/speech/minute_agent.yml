@@ -1,0 +1,71 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/docker/docker-agent/main/agent-schema.json
+version: 10
+
+# Local meeting-minutes agents for minutes.sh (Docker Agent + Docker Model Runner).
+# This file IS the live configuration: minutes.sh runs it directly and selects the
+# agent per stage (`--agent root` for the final document, `--agent condenser` for
+# chunk/outline condensation in the two-pass fallback). Two agents exist only to
+# give each stage its own max_tokens without rewriting this file mid-run.
+#
+# The model ref must match the MODEL default in minutes.sh (which pulls and
+# pre-warms it). A different model can be passed per run with
+# `--model 'root=dmr/<ref>' --model 'condenser=dmr/<ref>'` (minutes.sh does this
+# when SPEECH_MINUTES_MODEL / --model is set).
+#
+# Deliberately ABSENT (removed after debugging — do not re-add):
+# - runtime_flags / context_size: forcing them makes docker agent reload the model
+#   with a non-default config; the reload + a large single-shot prefill triggers
+#   the idle/proxy stream drop (docker/docker-agent#3298 -> fix #3302). DMR's
+#   default load (32768 ctx for this model) is correct.
+# - keep_alive "0": unloading between calls made every call a cold load.
+
+metadata:
+  author: Matteo Bisi
+  license: Internal
+  description: Local meeting-minutes agents for speech transcripts.
+  version: "2.0.0"
+
+models:
+  secretary_model:
+    provider: dmr
+    model: huggingface.co/bartowski/qwen2.5-14b-instruct-gguf
+    temperature: 0.2
+    top_p: 0.9
+    # Final document: large cap so the minutes are never truncated.
+    max_tokens: 5120
+    provider_opts:
+      keep_alive: "10m"
+
+  condenser_model:
+    provider: dmr
+    model: huggingface.co/bartowski/qwen2.5-14b-instruct-gguf
+    temperature: 0.2
+    top_p: 0.9
+    # Chunk/outline notes: small cap keeps merge inputs compact so the reduce
+    # step stays well inside the context window.
+    max_tokens: 768
+    provider_opts:
+      keep_alive: "10m"
+
+agents:
+  root:
+    model: secretary_model
+    description: Local meeting secretary — produces the final minutes document.
+    instruction: |
+      You process speech-to-text meeting transcripts locally through Docker Model Runner.
+      Follow the task instructions in each user message exactly; the message says whether to condense a chunk or produce a final document.
+      The transcript may be Italian or English; write your output in the same language as the transcript unless the user asks otherwise.
+      Never invent participant names, decisions, dates, owners, numbers, or commitments. If something is unclear, mark it as unclear.
+      Do not include your reasoning, restate the task, or add any preamble. Output only what the task asks for, as Markdown, with no code fences.
+      Treat all content as confidential and local.
+
+  condenser:
+    model: condenser_model
+    description: Condenses transcript chunks and outlines for later consolidation.
+    instruction: |
+      You process speech-to-text meeting transcripts locally through Docker Model Runner.
+      Follow the task instructions in each user message exactly; the message says whether to condense a chunk or produce a final document.
+      The transcript may be Italian or English; write your output in the same language as the transcript unless the user asks otherwise.
+      Never invent participant names, decisions, dates, owners, numbers, or commitments. If something is unclear, mark it as unclear.
+      Do not include your reasoning, restate the task, or add any preamble. Output only what the task asks for, as Markdown, with no code fences.
+      Treat all content as confidential and local.

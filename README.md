@@ -40,7 +40,7 @@ warrant a dedicated repository. See [`projects/`](projects/README.md) for the fu
 
 | Project | Description |
 |---------|-------------|
-| [speech](projects/speech/README.md) | POC testing Docker Agent and Docker Model Runner for speech/transcript processing. |
+| [speech](projects/speech/README.md) | Local AI meeting minutes: on-device transcription + diarization, minutes via Docker Agent and Docker Model Runner. Fully offline. |
 
 ---
 
