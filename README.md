@@ -59,6 +59,7 @@ warrant a dedicated repository. See [`projects/`](projects/README.md) for the fu
 - [10_kitty_terminal](runbooks/10_kitty_terminal.md): A cheatsheet for the Kitty terminal.
 - [11_ghostty_terminal](runbooks/11_ghostty_terminal.md): Configuration guide for the Ghostty terminal emulator.
 - [12_docker_sandboxes_sbx](runbooks/12_docker_sandboxes_sbx.md): Runbook for Docker Sandboxes (sbx) — running AI agents in isolated microVMs.
+- [13_firecracker_microvm](runbooks/13_firecracker_microvm.md): Install Firecracker and boot a disposable Linux microVM with upstream demonstration artifacts.
 
 ---
 
