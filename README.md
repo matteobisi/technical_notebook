@@ -62,6 +62,7 @@ warrant a dedicated repository. See [`projects/`](projects/README.md) for the fu
 - [13_firecracker_microvm](runbooks/13_firecracker_microvm.md): Install Firecracker and boot a disposable Linux microVM with upstream demonstration artifacts.
 - [14_git_ssh_keys](runbooks/14_git_ssh_keys.md): Create and securely use SSH keys for GitHub and GitLab Git operations on Linux and macOS.
 - [15_docker_agent](runbooks/15_docker_agent.md): Runbook for Docker Agent: YAML agent definitions, local models via Docker Model Runner, multi-agent teams, OCI distribution, evaluations, and verified gotchas.
+- [16_openclaw_device_pairing](runbooks/16_openclaw_device_pairing.md): Approve browser and mobile clients against a containerised OpenClaw Gateway, and the maintenance commands around pairing.
 
 ---
 
