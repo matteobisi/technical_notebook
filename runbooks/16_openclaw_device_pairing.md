@@ -12,7 +12,7 @@ that run; anything not exercised there is marked **(not verified)**.
 
 ## Table of Contents
 
-- [The two things that break the CLI](#the-two-things-that-break-the-cli)
+- [Three ways the CLI breaks](#three-ways-the-cli-breaks)
 - [Pair a mobile app with a setup code](#pair-a-mobile-app-with-a-setup-code)
 - [Approve a pending client](#approve-a-pending-client)
 - [Verify the pairing](#verify-the-pairing)
@@ -27,9 +27,9 @@ that run; anything not exercised there is marked **(not verified)**.
 
 ---
 
-## The two things that break the CLI
+## Three ways the CLI breaks
 
-Almost every failure below comes from one of these.
+Almost every failure below comes from one of these three.
 
 ### 1. The port is not the default
 
@@ -57,13 +57,89 @@ grep -i ':7636' /proc/net/tcp
 
 `00000000` means the socket is bound to all interfaces, consistent with `--bind lan`.
 
-In this container the port is also exported as `OPENCLAW_GATEWAY_PORT=30262`, which is why
-commands run without `--url` find the Gateway on their own.
+### 2. The CLI does not read the launch flag
 
-### 2. `--url` disables credential fallback
+This is the trap that actually bites. The port in the process arguments is a **launch flag**, not
+config. The CLI resolves the port from `gateway.port` in `openclaw.json` (or
+`OPENCLAW_GATEWAY_PORT`), and in a default deployment **neither is set** — so a clean shell
+resolves to the upstream default `18789` and talks to nothing:
 
-Passing `--url` is treated as an override, and an override requires explicit credentials.
-The CLI does not fall back to the config file or the environment:
+```shell
+openclaw gateway status
+```
+
+```text
+Gateway: bind=loopback (127.0.0.1), port=18789 (env/config)
+Check target: ws://127.0.0.1:18789
+```
+
+Worse, `devices list` does **not** fail loudly here. It prints one line of warning and answers
+from local state instead of the Gateway:
+
+```shell
+openclaw devices list
+```
+
+```text
+Direct scope access failed; using local fallback.
+Paired (3)
+┌─────────────────────┬────────────┬────────────────┬──────────────────┐
+│ Device              │ Device ID  │ Roles          │ Scopes           │
+```
+
+That output is **stale**: it is read from the local device table, not from the running Gateway,
+so a device you just paired through the UI can be missing, and an approval can appear not to
+have taken effect. Other commands are honest and simply fail:
+
+```text
+Couldn't connect to OpenClaw.
+Check the Control UI or run `openclaw gateway status` in your terminal.
+```
+
+Reproduced on `nodes status`, `nodes list`, and `health`.
+
+The `OPENCLAW_GATEWAY_PORT` variable seen in some shells is **not exported by the image**. The
+Gateway process sets it on itself during startup (`prepareGatewayServerBootstrap`), so only
+processes descended from that Gateway inherit it — which is why commands typed in your own
+`docker exec` shell can behave differently from commands run by the agent inside the same
+container. Do not rely on it.
+
+Two ways out. Pick one and make it explicit.
+
+**Set the port in config** — the durable fix, because every CLI invocation reads it:
+
+```shell
+openclaw config set gateway.port 30262
+```
+
+```shell
+openclaw gateway status
+```
+
+```text
+Gateway: bind=loopback (127.0.0.1), port=30262 (env/config)
+```
+
+**Or export it in the shell** — fine for a one-off session, invisible to anything else:
+
+```shell
+OPENCLAW_GATEWAY_PORT=30262 openclaw devices list
+```
+
+**Or pass `--url` plus `--token` explicitly** — the only form that works regardless of what the
+CLI resolves on its own. This is the reliable recipe for a maintenance shell:
+
+```shell
+openclaw devices list \
+  --url ws://127.0.0.1:30262 \
+  --token "$OPENCLAW_GATEWAY_TOKEN"
+```
+
+### 3. `--url` disables credential fallback
+
+The third trap is milder, and it is the one the error message names directly. Passing `--url` is
+treated as an override, and an override requires explicit credentials — the CLI does not fall back
+to the config file or the environment:
 
 ```shell
 openclaw devices list --url ws://127.0.0.1:30262
@@ -75,12 +151,12 @@ Fix: pass --token or --password *** --url (or gatewayToken in tools).
 For the default local or SSH-tunneled Gateway, remove --url to use the configured target.
 ```
 
-The practical conclusion: **inside the container, drop `--url` entirely.** The CLI already
-knows the port and the token. Reach for `--url` plus `--token` only when a command must target
-a different Gateway.
+So `--url` always needs a token beside it. That does not make `--url` the wrong choice — given the
+port problem above, the explicit form is often the *only* correct one. The mistake to avoid is
+`--url` alone.
 
-If you do need the explicit form, `OPENCLAW_GATEWAY_TOKEN` is already set in the container
-environment; `openclaw gateway auth-token --show` is only needed when that variable is absent:
+`OPENCLAW_GATEWAY_TOKEN` is set in the container environment, so the explicit form needs no
+interactive step. `openclaw gateway auth-token --show` is only for when that variable is absent:
 
 ```shell
 openclaw devices list --url ws://127.0.0.1:30262 --token "$OPENCLAW_GATEWAY_TOKEN"
@@ -388,9 +464,10 @@ the exit code. In this environment it reported one real finding: the memory sear
 
 ## Gotchas
 
-- **`--url` without `--token` always fails** — `gateway url override requires explicit credentials`. Inside the container, omit `--url` instead of adding a token.
+- **`--url` without `--token` always fails** — `gateway url override requires explicit credentials`. Pair it with `--token "$OPENCLAW_GATEWAY_TOKEN"`, or omit `--url` and fix the port instead.
 - **`auth-token` cannot be captured** — it refuses command substitution and non-TTY runs. Use `$OPENCLAW_GATEWAY_TOKEN`.
-- **Two ports exist** — the upstream default is `18789`, this image runs `30262`. `gateway.port` unset in config does not mean the default is in use.
+- **Two ports exist** — the upstream default is `18789`, this image runs `30262`. `gateway.port` unset in config means the CLI resolves `18789`, not the port the Gateway actually listens on. Set `gateway.port` or pass `--url`.
+- **`devices list` can answer from stale local state** — `Direct scope access failed; using local fallback.` means the output did not come from the Gateway. Treat it as wrong, not as empty.
 - **`ss` and `netstat` are absent** — read `/proc/net/tcp` to confirm the listening socket.
 - **`nodes describe` needs `--node`** — a bare id is rejected as a missing option.
 - **`paired` is not `connected`** — backgrounded phones fail invocation with `node not connected`.
@@ -404,8 +481,7 @@ the exit code. In this environment it reported one real finding: the memory sear
 
 ### `gateway url override requires explicit credentials`
 
-`--url` was passed without credentials. Remove `--url` inside the container, or add
-`--token "$OPENCLAW_GATEWAY_TOKEN"`.
+`--url` was passed without credentials. Add `--token "$OPENCLAW_GATEWAY_TOKEN"`.
 
 ### `Gateway auth token failed: Refusing to print the Gateway token outside an interactive terminal`
 
@@ -415,9 +491,16 @@ when you genuinely need to read the value.
 
 ### CLI reports the Gateway as unreachable on `127.0.0.1:18789`
 
-The container runs the Gateway on `30262`. Confirm with `ps aux | grep '[o]penclaw.mjs gateway'`
-and `grep -i ':7636' /proc/net/tcp`. Commands without `--url` pick the right port up
-automatically.
+The container runs the Gateway on `30262`, but the CLI resolves the port from `gateway.port` or
+`OPENCLAW_GATEWAY_PORT`, neither of which the image sets — so it defaults to `18789`. Confirm the
+real port with `ps aux | grep '[o]penclaw.mjs gateway'` and `grep -i ':7636' /proc/net/tcp`, then
+either run `openclaw config set gateway.port 30262` or pass `--url ws://127.0.0.1:30262 --token
+"$OPENCLAW_GATEWAY_TOKEN"`.
+
+### `Direct scope access failed; using local fallback.`
+
+The CLI could not reach the Gateway on the port it resolved, and answered from the local device
+table instead. Any device list printed after this line is stale. Fix the port, then re-run.
 
 ### Approval reports that exclusive offline state ownership is required
 
@@ -474,6 +557,11 @@ Run on 2026-11-08 against OpenClaw `2026.11.1 (4ffdd20)`, container on TrueNAS, 
 | Health | `health`, `status` | as quoted above |
 | Channels | `channels status --probe` | `works` |
 | Config | `config validate`, `config get gateway.port` | valid, key unset |
+| Port resolution, clean shell | `gateway status` with `HOME` and token, no `OPENCLAW_GATEWAY_PORT` | resolves `18789`, not the live `30262` |
+| Stale local fallback | `devices list` in that same clean shell | `Direct scope access failed; using local fallback.` with a device table from local state |
+| Honest failure | `nodes status`, `nodes list`, `health` in a clean shell | `Couldn't connect to OpenClaw.` |
+| Config-set fix | `config set gateway.port 30262` in an isolated `HOME` | writes the key; `gateway status` then reports `port=30262` |
+| Explicit target | `devices list --url ws://127.0.0.1:30262 --token …` | works regardless of resolved port |
 | Logs | `logs --limit 200 --plain` | log file path and lines |
 | Doctor | `doctor` | exit 0 with memory-provider warning |
 | Security | `security audit` | host-header fallback flagged |
@@ -489,6 +577,13 @@ a node re-approval.
 # What port is the Gateway really on?
 ps aux | grep '[o]penclaw.mjs gateway'
 grep -i ':7636' /proc/net/tcp
+openclaw gateway status | grep port=
+
+# Make the CLI agree (durable fix)
+openclaw config set gateway.port 30262
+
+# Or target it explicitly, in one command
+openclaw devices list --url ws://127.0.0.1:30262 --token "$OPENCLAW_GATEWAY_TOKEN"
 
 # Pair a phone
 openclaw qr
