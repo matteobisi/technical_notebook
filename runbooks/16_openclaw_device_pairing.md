@@ -114,7 +114,7 @@ openclaw qr --setup-code-only
 ```
 
 ```text
-eyJ1cmwiOiJ3c3M6Ly90cmltbXkubXNiaXJvLm5ldCIsImJvb3RzdHJhcFRva2VuIjoi...
+eyJ1cmwiOiJ3c3M6Ly9nYXRld2F5LmV4YW1wbGUuY29tIiwiYm9vdHN0cmFw…
 ```
 
 The payload is base64 JSON of `{url, bootstrapToken, expiresAtMs}` — the public `wss://` endpoint, a
