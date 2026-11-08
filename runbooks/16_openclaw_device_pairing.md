@@ -7,7 +7,7 @@ host.
 
 Verified on OpenClaw **2026.11.1** in a container on TrueNAS, with the Gateway started as
 `openclaw.mjs gateway --allow-unconfigured --bind lan --port 30262` and published at
-`https://trimmy.msbiro.net`. Version strings, port numbers, and output text are quoted from
+`https://gateway.example.com`. Version strings, port numbers, and output text are quoted from
 that run; anything not exercised there is marked **(not verified)**.
 
 ## Table of Contents
@@ -114,13 +114,14 @@ openclaw qr --setup-code-only
 ```
 
 ```text
-eyJ1cmwiOiJ3c3M6Ly90cmltbXkubXNiaXJvLm5ldCIsImJvb3RzdHJhcFRva2VuIjoi...","expiresAtMs":1794099235407}
+eyJ1cmwiOiJ3c3M6Ly90cmltbXkubXNiaXJvLm5ldCIsImJvb3RzdHJhcFRva2VuIjoi...
 ```
 
-The payload carries the public `wss://` URL and a single-use bootstrap token. Treat the whole
-string as a credential: it expires, and it should not be pasted into chat, tickets, or logs.
-Relevant flags: `--limited` (omit `operator.admin`), `--voice-node` (node + read + Talk only),
-`--public-url <url>` and `--url <url>` (override the advertised endpoint).
+The payload is base64 JSON of `{url, bootstrapToken, expiresAtMs}` — the public `wss://` endpoint, a
+single-use bootstrap token, and its expiry. Treat the whole string as a credential: do not paste it
+into chat, tickets, or logs, and mint a fresh one if it leaks. Relevant flags: `--limited` (omit
+`operator.admin`), `--voice-node` (node + read + Talk only), `--public-url <url>` and `--url <url>`
+(override the advertised endpoint).
 
 ## Approve a pending client
 
@@ -144,13 +145,16 @@ openclaw devices list
 
 ```text
 Paired (3)
-┌─────────────────────┬──────────────────────┬────────────────┬──────────────────────┐
-│ Device              │ Device ID            │ Roles          │ Scopes               │
-├─────────────────────┼──────────────────────┼────────────────┼──────────────────────┤
-│ iPhone              │ a254124fa19d985370a8 │ node, operator │ operator.admin,      │
-│ openclaw-control-ui │ 7d69924a38ad5e7e1902 │ operator       │ operator.admin,      │
-└─────────────────────┴──────────────────────┴────────────────┴──────────────────────┘
+┌─────────────────────┬────────────┬────────────────┬──────────────────┐
+│ Device              │ Device ID  │ Roles          │ Scopes           │
+├─────────────────────┼────────────┼────────────────┼──────────────────┤
+│ iPhone              │ 1f3b7c9d…  │ node, operator │ operator.admin,  │
+│ openclaw-control-ui │ 8c4d1e6f…  │ operator       │ operator.admin,  │
+└─────────────────────┴────────────┴────────────────┴──────────────────┘
 ```
+
+Device IDs and IPs are abbreviated or replaced with documentation ranges; the shapes and column
+set are the real ones.
 
 Add `--json` for the machine-readable form, which separates `pending` and `paired` arrays and
 is much easier to read than the wrapped table. With nothing waiting, the approve command says
@@ -202,12 +206,15 @@ openclaw nodes status
 
 ```text
 Known: 1 · Paired: 1 · Connected: 0
-┌──────┬───────────────────────────────────────────┬────────────────┬────────┬──────────────────────────────────┐
-│ Node │ ID                                        │ IP             │ Detail │ Status                           │
-├──────┼───────────────────────────────────────────┼────────────────┼────────┼──────────────────────────────────┤
-│ iPho │ a254124fa19d985370a8a93835119e030b421f685 │ 109.78.127.147 │ client │ paired · disconnected · approved │
-└──────┴───────────────────────────────────────────┴────────────────┴────────┴──────────────────────────────────┘
+┌──────┬────────────┬────────────────┬────────┬──────────────────────────────────┐
+│ Node │ ID         │ IP             │ Detail │ Status                           │
+├──────┼────────────┼────────────────┼────────┼──────────────────────────────────┤
+│ iPho │ 1f3b7c9d…  │ 203.0.113.45   │ client │ paired · disconnected · approved │
+└──────┴────────────┴────────────────┴────────┴──────────────────────────────────┘
 ```
+
+The real table wraps every long field across several lines, which makes it hard to read in a
+terminal; `--json` is the better output when you need to parse it.
 
 `paired` and `connected` are independent. A phone with the app in the background shows
 `paired · disconnected · approved` — that is healthy, and it means node command invocation will
@@ -315,7 +322,7 @@ openclaw channels status --probe
 
 ```text
 Gateway reachable.
-- Telegram trimmyhomebot: enabled, configured, running, connected, in:8h ago, out:8h ago, transport:just now, mode:polling, bot:@TrimmyHomeBot, token:***, works
+- Telegram example_bot: enabled, configured, running, connected, in:8h ago, out:8h ago, transport:just now, mode:polling, bot:@example_bot, token:***, works
 ```
 
 `--probe` performs a live connection check; plain `channels list` only reads local config and
@@ -463,7 +470,7 @@ Run on 2026-11-08 against OpenClaw `2026.11.1 (4ffdd20)`, container on TrueNAS, 
 | Setup code | `qr --setup-code-only` | payload with public `wss://` URL |
 | Node status | `nodes status`, `nodes list`, `nodes describe --node iPhone` | permission map as quoted above |
 | Node invoke, backgrounded | `nodes invoke --node iPhone --command device.status` | `node not connected` |
-| Node re-approval | node request `da66c615-…` | approved, state `approved` |
+| Node re-approval | node request `9a1c4e77-…` | approved, state `approved` |
 | Health | `health`, `status` | as quoted above |
 | Channels | `channels status --probe` | `works` |
 | Config | `config validate`, `config get gateway.port` | valid, key unset |
